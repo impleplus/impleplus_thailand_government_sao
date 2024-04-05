@@ -1,0 +1,65 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 							<h3>Complaint Status</h3><hr class="header-text"/>
+ 								<div class="row pb-1">
+ 
+ 									<div class="col-auto ms-auto d-print-none">
+ 										<div class="btn-list">
+ 											<%if(accessAction.export){%><a href="#" onclick="table_EAnKME.export()" class="btn btn-outline-secondary d-none d-sm-inline">Export</a><%}%>
+ 											<%if(accessAction.create){%><a href="/complaint_status/edit" class="btn btn-outline-success d-none d-sm-inline" target="">New Data</a><%}%>
+ 										</div>
+ 									</div>
+ 								</div>
+ 								<div class="table-responsive">
+ 									<table class="table card-table table-vcenter text-nowrap datatable table-striped" id="tbl-table_EAnKME">
+ 										<thead>
+ 											<tr>
+ 												<th>ชื่อ</th>
+												<th></th>
+												<th></th>
+ 											</tr>
+ 										</thead>
+ 										<tbody>
+ 										</tbody>
+ 										<tfoot></tfoot> 
+ 									</table>
+ 								
+
+ 								<div id="tbl-table_EAnKME-pagination" class="imple-pagination"></div>
+ 							</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    
+    var complaint_statusRecords = JSON.parse(String.raw `<%-JSON.stringify(complaint_statusRecords)%>`);
+    
+    var complaint_statusRecordsPagination = JSON.parse(String.raw `<%-JSON.stringify(complaint_statusRecordsPagination)%>`);
+    var table_EAnKME = new Table_EAnKME("table_EAnKME",accessAction);
+0
+
+onload = () => {
+        table_EAnKME.render(complaint_statusRecords,"");
+        table_EAnKME.pagination(complaint_statusRecordsPagination);
+}
+    
+    
+
+</script>

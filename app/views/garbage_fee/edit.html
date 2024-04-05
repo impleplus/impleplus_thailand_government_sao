@@ -1,0 +1,109 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 					<ul class="nav nav-tabs" data-bs-toggle="tabs">
+ 						<li class="nav-item">
+ 							<a href="#tabs-ooxvGD" class="nav-link active" data-bs-toggle="tab">Information</a>
+ 						</li>
+ 
+ 					</ul>
+ 					<div class="card-body">
+ 						<div class="tab-content">
+ 							<div class="tab-pane active show" id="tabs-ooxvGD">
+ 								<form action="/garbage_fee/save" class="needs-validation" id="frm-ooxvGD" method="post">
+ 
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ชื่อผู้จ่ายเงิน</label>
+ 											<div class="row g-2">
+ 											<div class="col">
+ 												<input type="hidden" name="population_id" id="lookup_JkpfKL" value="<%=garbage_feeRecord.population_id%>">
+ 												<input type="text" name="population_id_text" id="lookup_JkpfKL_text" value="<%=garbage_feeRecord.population_name%>" class="form-control " >
+ 											</div>
+ 											<div class="col-auto">
+ 												<button type="button" href="#" class="btn btn-white btn-icon" aria-label="Button" data-title="ชื่อผู้จ่ายเงิน" data-varibale="populationRecords" data-url="/population" data-headers="ชื่อ,ที่อยู่" data-fields="user_name,address" data-select="id,user_name" data-target="lookup_JkpfKL,lookup_JkpfKL_text" onclick="lookup.open(this)">
+ 													<svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+ 												</button>
+ 											</div>
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ปี</label>
+ 										<div>
+ 											<input type="number" name="year" id="input_gpezie" maxlength="100" value="<%=garbage_feeRecord.year%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เดือน</label>
+ 										<div>
+ 											<input type="number" name="month" id="input_NTNuQB" maxlength="100" value="<%=garbage_feeRecord.month%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">จำนวนถังขยะ</label>
+ 										<div>
+ 											<input type="number" name="quantity" id="input_TUqtnj" maxlength="100" value="<%=garbage_feeRecord.quantity%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ค่าเก็บขยะ</label>
+ 										<div>
+ 											<input type="number" name="price" id="input_jOXYbM" maxlength="100" value="<%=garbage_feeRecord.price%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">สถานะการจ่ายเงิน</label>
+ 								<div>
+ 									<select name="payment_status" id="select_MWavjC" class="form-select" >
+ 										<option value="0" <%if(garbage_feeRecord.payment_status==0){%>selected<%}%> >ยังไม่ชำระ</option>
+										<option value="1" <%if(garbage_feeRecord.payment_status==1){%>selected<%}%> >ชำระแล้ว</option>
+
+ 									</select>
+ 								</div>
+ 							</div>
+ 
+ 							<div class="form-group mb-3 col-md-12">
+ 								<label class="form-label">รายละเอียดเพิ่มเติม</label>
+ 								<div>
+ 									<textarea name="remark" id="textarea_CDmPuU" maxlength="100" class="form-control " ><%=garbage_feeRecord.remark%></textarea>
+ 								</div>
+ 							</div>
+ 											<%if(accessAction.edit){%> 
+ 												<div class="spinner-border" id="button_JkjKqA_loading" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div> 
+ 												<button type="submit" id="button_JkjKqA" class="btn btn-fw btn-primary btn-save" data-form="frm-ooxvGD" method-callback="" method-before="" >Save</button> 
+ 											<%}%>
+ 
+ 
+ 								</form>
+ 							</div>
+ 
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    0
+
+onload = () => {
+        
+}
+    
+    
+
+</script>

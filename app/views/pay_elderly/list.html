@@ -1,0 +1,98 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 							<h3>เบี้ยยังชีพคนชรา</h3><hr class="header-text"/>
+ 								<div class="row pb-1">
+ 									<div class="col col-10">
+ 										<div class="row">
+ 									<div class="col col-3">
+ 										<div class="form-group">
+ 											<label class="form-label">&nbsp;</label>
+ 											<div>
+ 												<input type="text" name="qpay_elderlyRecords" id="qpay_elderlyRecords" value="<%=param.qpay_elderlyRecords%>" data-type="text" data-field='user_name,payment_status' data-operator="like" class="form-control table_OkucWf-searchFilter" placeholder="Search for…" autocomplete="off">
+ 											</div>
+ 										</div>
+ 									</div>
+ 									
+<div class="col col-2"> 
+ 										<div class="form-group">
+ 											<label class="form-label">สถานะการชำระเงิน</label>
+ 											<div>
+ 												<select name="qpayment_status" id="qpayment_status" class="form-select table_OkucWf-searchFilter" data-type="text" data-field='payment_status' data-operator="like" autocomplete="off">
+ 													<option value=""></option>
+ 													<% [{"value":"0","text":"ยังไม่ชำระ"},{"value":"1","text":"ชำระแลว"}].forEach(function(data) { %>
+ 														<option value="<%=data.value%>" <%if(param.qpayment_status==data.value){%>selected<%}%> ><%=data.text%></option>
+ 													<% }) %> 
+ 												</select>
+ 											</div>
+ 										</div>
+ 									</div>
+ 										<div class="col col-1">
+ 											<label class="form-label">&nbsp;</label>
+ 											<button class="btn btn-secondary btn-pill" type="button" onclick="table_OkucWf.onSearch()" >Search</button>
+ 										</div>
+ 										</div>
+ 									</div>
+ 									<div class="col-auto ms-auto d-print-none">
+ 										<div class="btn-list">
+ 											<%if(accessAction.export){%><a href="#" onclick="table_OkucWf.export()" class="btn btn-outline-secondary d-none d-sm-inline">Export</a><%}%>
+ 											<%if(accessAction.create){%><a href="/pay_elderly/edit" class="btn btn-outline-success d-none d-sm-inline" target="">New Data</a><%}%>
+ 										</div>
+ 									</div>
+ 								</div>
+ 								<div class="table-responsive">
+ 									<table class="table card-table table-vcenter text-nowrap datatable table-striped" id="tbl-table_OkucWf">
+ 										<thead>
+ 											<tr>
+ 												<th>ชื่อ</th>
+												<th>ปี</th>
+												<th>เดือน</th>
+												<th>จำนวนเงิน</th>
+												<th>สถานะการจ่ายเงิน</th>
+												<th></th>
+												<th></th>
+ 											</tr>
+ 										</thead>
+ 										<tbody>
+ 										</tbody>
+ 										<tfoot></tfoot> 
+ 									</table>
+ 								
+
+ 								<div id="tbl-table_OkucWf-pagination" class="imple-pagination"></div>
+ 							</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    
+    var pay_elderlyRecords = JSON.parse(String.raw `<%-JSON.stringify(pay_elderlyRecords)%>`);
+    
+    var pay_elderlyRecordsPagination = JSON.parse(String.raw `<%-JSON.stringify(pay_elderlyRecordsPagination)%>`);
+    var table_OkucWf = new Table_OkucWf("table_OkucWf",accessAction);
+0
+
+onload = () => {
+        table_OkucWf.render(pay_elderlyRecords,"");
+        table_OkucWf.pagination(pay_elderlyRecordsPagination);
+}
+    
+    
+
+</script>

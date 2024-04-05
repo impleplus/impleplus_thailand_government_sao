@@ -1,0 +1,101 @@
+<div class="page-body">
+	<div class="container-xl">
+ 		<div class="col-12">
+ 			<div class="card">
+ 				<div class="card-body">
+ 					<ul class="nav nav-tabs" data-bs-toggle="tabs">
+ 						<li class="nav-item">
+ 							<a href="#tabs-xfoLTn" class="nav-link active" data-bs-toggle="tab">Information</a>
+ 						</li>
+ 
+ 					</ul>
+ 					<div class="card-body">
+ 						<div class="tab-content">
+ 							<div class="tab-pane active show" id="tabs-xfoLTn">
+ 								<form action="/population/save" class="needs-validation" id="frm-xfoLTn" method="post">
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ชื่อ นามสกุล</label>
+ 										<div>
+ 											<input type="text" name="user_name" id="input_yILMKm" maxlength="100" value="<%=populationRecord.user_name%>" required class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เลขที่ผู้ใช้ไฟฟ้า</label>
+ 										<div>
+ 											<input type="text" name="electricity_user_number" id="input_hCyqlV" maxlength="100" value="<%=populationRecord.electricity_user_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เลขที่ผู้ใช้น้ำปะปา</label>
+ 										<div>
+ 											<input type="text" name="water_user_number" id="input_bPkjbU" maxlength="100" value="<%=populationRecord.water_user_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">หมายเลขผู้สูงอายุ</label>
+ 										<div>
+ 											<input type="text" name="elderly_user_number" id="input_omEPjf" maxlength="100" value="<%=populationRecord.elderly_user_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">หมายเลขการเก็บขยะ</label>
+ 										<div>
+ 											<input type="text" name="garbage_user_number" id="input_FMQnwN" maxlength="100" value="<%=populationRecord.garbage_user_number%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">ที่อยู่</label>
+ 										<div>
+ 											<input type="text" name="address" id="input_ZDHBJF" maxlength="100" value="<%=populationRecord.address%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">เบอร์โทรศัพท์</label>
+ 										<div>
+ 											<input type="text" name="phone" id="input_VdaJmz" maxlength="100" value="<%=populationRecord.phone%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 									<div class="form-group mb-3 col-md-12">
+ 										<label class="form-label">โซเชียล</label>
+ 										<div>
+ 											<input type="text" name="social" id="input_XHIGhd" maxlength="100" value="<%=populationRecord.social%>" class="form-control " autocomplete="off" >
+ 										</div>
+ 									</div>
+ 											<%if(accessAction.edit){%> 
+ 												<div class="spinner-border" id="button_AtGTAr_loading" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div> 
+ 												<button type="submit" id="button_AtGTAr" class="btn btn-fw btn-primary btn-save" data-form="frm-xfoLTn" method-callback="" method-before="" >Save</button> 
+ 											<%}%>
+ 
+ 
+ 								</form>
+ 							</div>
+ 
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+</div>
+
+<%- contentFor('scripts') %>
+<script type="text/javascript">
+    var accessAction = [];
+    var accessActionData = "<%-accessAction%>";
+    var dataParam = '<%-JSON.stringify(param)%>';
+    var param = {};
+    if(dataParam != ""){
+      param = JSON.parse('<%-JSON.stringify(param)%>');
+    }    
+    if(accessActionData != "" && accessActionData != undefined) {
+        accessAction = JSON.parse(String.raw `<%-JSON.stringify(accessAction)%>`);
+    }
+    0
+
+onload = () => {
+        
+}
+    
+    
+
+</script>
